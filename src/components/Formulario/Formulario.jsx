@@ -17,7 +17,7 @@ function Formulario(props) {
     const [getTime, setTime] = useState('programação')
 
     //evento de submit
-    const aoSalvar = (e) => {
+    const enviarFormulario = (e) => {
         e.preventDefault()
 
         const colaborador = {
@@ -40,7 +40,7 @@ function Formulario(props) {
 
     return (
         <><section className='formulario'>
-            <form onSubmit={aoSalvar}>
+            <form onSubmit={enviarFormulario}>
                 <h2>Preencha os dados para criar o Card</h2>
                 <CampoTexto
                     obrigatorio={true}
