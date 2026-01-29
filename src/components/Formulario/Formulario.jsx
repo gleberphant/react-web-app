@@ -8,13 +8,13 @@ import Botao from '../Botao/Botao'
 
 function Formulario(props) {
 
-    const times = props.listaTimes
+    const nomeTimes = props.nomeTimes
 
     // dados do formulário
     const [getNome, setNome] = useState('nome')
     const [getCargo, setCargo] = useState('cargo')
-    const [getImagem, setImagem] = useState('imagem')
-    const [getTime, setTime] = useState('programação')
+    const [getImagem, setImagem] = useState('https://github.com/gleberphant.png')
+    const [getTime, setTime] = useState('Programação')
 
     //evento de submit
     const enviarFormulario = (e) => {
@@ -63,7 +63,7 @@ function Formulario(props) {
                 <ListaSuspensa
                     obrigatorio={true}
                     label="Time"
-                    itens={times}
+                    itens={nomeTimes}
                     valor={getTime}
                     callbackAlterarValor={setTime} />
 
