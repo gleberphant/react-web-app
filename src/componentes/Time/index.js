@@ -1,11 +1,9 @@
-import { useState } from 'react'
 import Colaborador from '../Colaborador'
 import './time.css'
 import hexToRgba from 'hex-to-rgba';
 
 const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
-    //const [corSecundaria, setCorSecundaria ] = useState(time.corSecundaria)
-
+    
     return (
 
         colaboradores.length > 0 && <section className='time' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor:hexToRgba( time.cor , '0.6')}}>
