@@ -3,52 +3,75 @@ import Botao from '../Botao'
 import CampoTexto from '../CampoTexto'
 import ListaSuspensa from '../ListaSuspensa'
 import './formulario.css'
+import CampoCor from '../CampoCor'
 
-const Formulario = ({aoCadastrar, times}) => {
+const Formulario = ({ cadastrarColaborador, cadastrarTime, times  }) => {
 
     const [nome, setNome] = useState('')
     const [cargo, setCargo] = useState('')
     const [imagem, setImagem] = useState('')
     const [time, setTime] = useState('')
 
-    const aoSubmeter = (evento) => {
-        evento.preventDefault()
-        console.log('form enviado', nome, cargo, imagem, time )
-        aoCadastrar({
-            nome,
-            cargo,
-            imagem,
-            time
-        })
+    const [nomeTime, setNomeTime] = useState('')
+    const [corTime, setCorTime] = useState('#ffffff')
+
+
+
+    const submeterColaborador = (e) => {
+        e.preventDefault()
+        console.log('Colaborador enviado', nome, cargo, imagem, time)
+        cadastrarColaborador({ nome, cargo, imagem, time })
     }
 
+    const submeterTime = (e) => {
+        e.preventDefault()
+        console.log('Time enviado', nomeTime, corTime)
+        cadastrarTime({ nome: nomeTime, cor: corTime })
+
+    }
     return (
         <section className="formulario-container">
-            <form className="formulario" onSubmit={aoSubmeter}>
+            <form className="formulario" onSubmit={submeterColaborador}>
                 <h2>Preencha os dados para criar o card do colaborador.</h2>
                 <CampoTexto
                     obrigatorio={true}
                     label='Nome'
                     placeholder='Digite seu nome '
                     valor={nome}
-                    aoAlterado={valor => setNome(valor)}/>
+                    aoAlterado={valor => setNome(valor)} />
                 <CampoTexto
                     obrigatorio={true}
-                    label='Cargo' 
+                    label='Cargo'
                     placeholder='Digite seu cargo '
                     valor={cargo}
-                    aoAlterado={valor => setCargo(valor)}/>
-                <CampoTexto 
-                    label='Imagem' 
+                    aoAlterado={valor => setCargo(valor)} />
+                <CampoTexto
+                    label='Imagem'
                     placeholder='Informe o endereço da imagem '
-                    aoAlterado={valor => setImagem(valor)}/>
-                <ListaSuspensa 
+                    aoAlterado={valor => setImagem(valor)} />
+                <ListaSuspensa
                     obrigatorio={true}
                     label='Times'
-                    items={times} 
+                    items={times}
                     valor={time}
-                    aoAlterado={valor => setTime(valor)}/>
+                    aoAlterado={valor => setTime(valor)} />
                 <Botao texto='Criar card' />
+            </form>
+            <form className="formulario" onSubmit={submeterTime}>
+                <h2>Preencha os dados para criar um novo time.</h2>
+                <CampoTexto
+                    obrigatorio={true}
+                    label='Nome do Time'
+                    placeholder='Digite nome do time '
+                    valor={nomeTime}
+                    aoAlterado={valor => setNomeTime(valor)} />
+                <CampoCor
+                    obrigatorio={true}
+                    label='Cargo do Time'
+                    placeholder='Digite a cor do time'
+                    valor={corTime}
+                    aoAlterado={valor => setCorTime(valor)} />
+                <Botao texto='Criar novo time' />
             </form>
         </section>
     )

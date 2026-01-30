@@ -9,6 +9,9 @@
     "chat.disableAIFeatures": true,
     "chat.extensionUnification.enabled": false,
     "cSpell.ignoreWords": [
-        "Rodape"
+        "Rodape",
+        "cabecalho",
+        "indice",
+        "rodape"
     ]
 }

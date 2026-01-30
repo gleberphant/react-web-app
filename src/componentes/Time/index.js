@@ -1,13 +1,24 @@
+import { useState } from 'react'
 import Colaborador from '../Colaborador'
 import './time.css'
+import hexToRgba from 'hex-to-rgba';
 
-const Time = ({ time, colaboradores }) => {
+const Time = ({ time, colaboradores, aoDeletar, mudarCor }) => {
+    //const [corSecundaria, setCorSecundaria ] = useState(time.corSecundaria)
+
     return (
 
-        colaboradores.length > 0 && <section className='time' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor: time.corPrimaria }}>
-            <h3 style={{ borderColor: time.corSecundaria }}>{time.nome}</h3>
+        colaboradores.length > 0 && <section className='time' style={{ backgroundImage: 'url(/imagens/fundo.png)', backgroundColor:hexToRgba( time.cor , '0.6')}}>
+            <input value={time.cor} onChange={e => mudarCor(e.target.value, time.id)}type='color' className='input-cor'></input>
+            <h3 style={{ borderColor: time.cor }}>{time.nome}</h3>
             <div className='colaboradores'>
-                {colaboradores.map((colaborador, indice) => <Colaborador key={indice} colaborador={colaborador} corDeFundo={time.corSecundaria} />)}
+                {colaboradores.map((colaborador, indice) => {
+                   return <Colaborador 
+                   deletarColaborador={aoDeletar} 
+                   key={indice} 
+                   colaborador={colaborador} 
+                   cor={time.cor} />
+                })}
             </div>
         </section>
 
